@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Build-a-Cat</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico">
+        <style>
+            img {
+                bottom: 0;
+                height : 540px;
+                position : absolute;
+                right: 0;
+                width : 400px;
+            }
+
+            #images {
+                bottom : 0px;
+                height : 540px;
+                position : absolute;
+                right : 0px;
+                width : 400px;
+                z-index: -1;
+            }
+
+            #traits {
+                max-width : 250px;
+                width : 50%;
+            }
+
+            #donate {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+            }
+
+            #confetti {
+                position: absolute;
+                left: 50%;
+                margin: 10px;
+                color: red;
+                visibility: hidden;
+            }
+
+            #confetti.show {
+                visibility: visible;
+            }
+
+            select {
+                width : 100%
+            }
+
+            @media (max-width: 600px), (max-height: 600px) {
+                body {
+                    font-size: 67%;
+                }
+
+                img {
+                    height: 270px;
+                    width: 200px;
+                }
+            }
+        </style>
+        <script>
+            function doChange()
+            {
+                var selected_head = document.getElementById('head').options[document.getElementById('head').selectedIndex].text;
+                var fur = document.getElementById('fur').options[document.getElementById('fur').selectedIndex].text + ".png";
+                var eyecolor = document.getElementById('eyecolor').options[document.getElementById('eyecolor').selectedIndex].text.toLowerCase() + ".png";
+                var eyeshape = document.getElementById('eyeshape').options[document.getElementById('eyeshape').selectedIndex].text;
+                var pupil = document.getElementById('pupil').options[document.getElementById('pupil').selectedIndex].text;
+                var ear = document.getElementById('ear').options[document.getElementById('ear').selectedIndex].text;
+                var whiskercolor = document.getElementById('whiskercolor').options[document.getElementById('whiskercolor').selectedIndex].text + ".png";
+                var whiskershape = document.getElementById('whiskershape').options[document.getElementById('whiskershape').selectedIndex].text;
+                var head = "";
+                if (selected_head === "Floofy") head = "Floofy_head/";
+                document.getElementById("shadowlayer").src = "https://kittycats.ws/online/images/ears/" + head + ear + "_SHADOW.png";
+                document.getElementById("furlayer").src = "https://kittycats.ws/online/images/ears/" + head + ear + "/" + fur;
+                document.getElementById("eyeslayer").src = "https://kittycats.ws/online/images/eyes/" + eyeshape + "_" + pupil + "/" + eyecolor;
+                document.getElementById("whiskerslayer").src = "https://kittycats.ws/online/images/whiskers/" + whiskershape + "/" + whiskercolor;
+                if (fur.substring(0,11) === "Confetti - ")
+                    document.getElementById('confetti').className = "show";
+                else
+                    document.getElementById('confetti').className = '';
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Build-a-Cat</h1>
+        <p>A "What-if" tool for <a href="https://kittycats.ws/">KittyCatS</a> collectors and breeders.</p>
+        <div id="confetti">
+            <p>Warning! You have chosen a Confetti fur. Some traits are impossible with a Confetti fur.</p>
+        </div>
+        <div id="images">
+            <img id="shadowlayer" alt="" src="https://kittycats.ws/online/images/ears/Genesis_SHADOW.png">
+            <img id="furlayer" alt="" src="https://kittycats.ws/online/images/ears/Genesis/Genesis%20-%20Bandit%20II.png">
+            <img id="eyeslayer" alt="" src="https://kittycats.ws/online/images/eyes/Curious_Big/genesis%20aqua.png">
+            <img id="whiskerslayer" alt="" src="https://kittycats.ws/online/images/whiskers/Guitar/Silver.png">
+        </div>
+        <form id="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        </form>
+        <form id="traits" name="traits">
+            <fieldset id="heads">
+                <legend>Head</legend>
+                <select id="head" onchange="doChange()">
+                    <option selected="">Rollie Pollie</option>
+                    <option>Floofy</option>
+                </select>
+            </fieldset>
+            <fieldset id="furs">
+                <legend>Fur</legend>
+                <select id="fur" onchange="doChange()">
+                    <option>Abyssinian - Black Silver</option>
+                    <option>Abyssinian - Blue</option>
+                    <option>Abyssinian - Cinnamon</option>
+                    <option>Abyssinian - Creme</option>
+                    <option>Abyssinian - Dark Chocolate</option>
+                    <option>Abyssinian - Fawn</option>
+                    <option>Abyssinian - Lilac</option>
+                    <option>Abyssinian - Platinum</option>
+                    <option>Abyssinian - Ruddy</option>
+                    <option>Abyssinian - Salt & Pepper</option>
+                    <option>American Shorthair - Blue & White Tabby</option>
+                    <option>American Shorthair - Blue Tabby</option>
+                    <option>American Shorthair - Brown & White Patch</option>
+                    <option>American Shorthair - Cream & White Tabby</option>
+                    <option>American Shorthair - Cream Tabby</option>
+                    <option>American Shorthair - Red & White Tabby</option>
+                    <option>American Shorthair - Red Tabby</option>
+                    <option>American Shorthair - Silver & White Tabby</option>
+                    <option>American Shorthair - Silver Tabby</option>
+                    <option>American Shorthair - Tawny & White Tabby</option>
+                    <option>American Shorthair - Tawny Tabby</option>
+                    <option>Australian Mist - Black</option>
+                    <option>Australian Mist - Blue Marble</option>
+                    <option>Australian Mist - Charcoal</option>
+                    <option>Australian Mist - Dark Chocolate</option>
+                    <option>Australian Mist - Fawn</option>
+                    <option>Australian Mist - Ginger</option>
+                    <option>Australian Mist - Light Chocolate Marble</option>
+                    <option>Australian Mist - Lilac Marble</option>
+                    <option>Australian Mist - Snow</option>
+                    <option>Balinese - Blue Lynx</option>
+                    <option>Balinese - Chocolate Lynx</option>
+                    <option>Balinese - Cream Lynx</option>
+                    <option>Balinese - Flame Lynx</option>
+                    <option>Balinese - Lilac Lynx</option>
+                    <option>Balinese - Seal Lynx</option>
+                    <option>Bengal - Black</option>
+                    <option>Bengal - Blue</option>
+                    <option>Bengal - Charcoal</option>
+                    <option>Bengal - Copper</option>
+                    <option>Bengal - Silver</option>
+                    <option>Bengal - Snow</option>
+                    <option>Bengal - Sorell</option>
+                    <option>Bengal - Tawny</option>
+                    <option>British Shorthair - Chocolate & White</option>
+                    <option>British Shorthair - Cream & White</option>
+                    <option>Burmese - Blue</option>
+                    <option>Burmese - Champagne</option>
+                    <option>Burmese - Flame</option>
+                    <option>Burmese - Platinum</option>
+                    <option>Burmese - Sable</option>
+                    <option>Burmilla - Black Silver Shaded</option>
+                    <option>Burmilla - Blue Shaded</option>
+                    <option>Burmilla - Chocolate Caramel</option>
+                    <option>Burmilla - Chocolate Silver Shaded</option>
+                    <option>Burmilla - Latte</option>
+                    <option>Burmilla - Lilac Shaded</option>
+                    <option>Burmilla - Red Silver Shaded</option>
+                    <option>Chateau Cat - 3 Spot No. 1</option>
+                    <option>Chateau Cat - 3 Spot No. 2</option>
+                    <option>Chateau Cat - Black & White No. 1</option>
+                    <option>Chateau Cat - Black & White No. 2</option>
+                    <option>Chateau Cat - Black & White No. 3</option>
+                    <option>Chateau Cat - Cocoa & White No. 1</option>
+                    <option>Chateau Cat - Cocoa & White No. 2</option>
+                    <option>Chateau Cat - Coffee & Cream No. 1</option>
+                    <option>Chateau Cat - Cream & White No. 1</option>
+                    <option>Chateau Cat - Cream & White No. 2</option>
+                    <option>Chateau Cat - Grey & White No. 1</option>
+                    <option>Chateau Cat - Grey & White No. 2</option>
+                    <option>Chateau Cat - Pink & White No. 1</option>
+                    <option>Chateau Cat - Silver & White No. 1</option>
+                    <option>Chateau Cat - Slate & White No. 1</option>
+                    <option>Chateau Cat - Tawny & White No.1</option>
+                    <option>Chateau Cat - Toffee Caramel</option>
+                    <option>Cheetah! - Au Natural</option>
+                    <option>Cheetah! - Blue Rapsberry No. 2</option>
+                    <option>Cheetah! - Blue Raspberry</option>
+                    <option>Cheetah! - Lime</option>
+                    <option>Cheetah! - Lime No. 2</option>
+                    <option>Cheetah! - Silver</option>
+                    <option>Cheetah! - Tangerine</option>
+                    <option>Cheetah! - Tangerine No. 2</option>
+                    <option>Chimera - Black Grey</option>
+                    <option>Chimera - Charcoal Mist</option>
+                    <option>Chimera - Washed Tortie</option>
+                    <option>Confetti - AppleBerry</option>
+                    <option>Confetti - BlueBerry</option>
+                    <option>Confetti - CherryBerry</option>
+                    <option>Confetti - CocoBerry</option>
+                    <option>Confetti - GrapeBerry</option>
+                    <option>Confetti - LemonBerry</option>
+                    <option>Confetti - OrangeBerry</option>
+                    <option>Confetti - PinkBerry</option>
+                    <option>Confetti - PlumBerry</option>
+                    <option>Confetti - TealBerry</option>
+                    <option>Foxie - Argyle</option>
+                    <option>Foxie - Auburn</option>
+                    <option>Foxie - Blondie</option>
+                    <option>Foxie - Chestnut</option>
+                    <option>Foxie - Cocoa Cream</option>
+                    <option>Foxie - Dusty Slate</option>
+                    <option>Foxie - Red Mask</option>
+                    <option>Foxie - Salt & Pepper Mask</option>
+                    <option>Foxie - Snow</option>
+                    <option>Foxie - Soft Black</option>
+                    <option selected="">Genesis - Bandit II</option>
+                    <option>Genesis - Bandit</option>
+                    <option>Genesis - Coco V</option>
+                    <option>Genesis - Coco IV</option>
+                    <option>Genesis - Coco III</option>
+                    <option>Genesis - Coco II</option>
+                    <option>Genesis - Coco</option>
+                    <option>Genesis - Diamond V</option>
+                    <option>Genesis - Diamond IV</option>
+                    <option>Genesis - Diamond III</option>
+                    <option>Genesis - Diamond II</option>
+                    <option>Genesis - Diamond</option>
+                    <option>Genesis - Domino V</option>
+                    <option>Genesis - Domino IV</option>
+                    <option>Genesis - Domino III</option>
+                    <option>Genesis - Domino II</option>
+                    <option>Genesis - Domino</option>
+                    <option>Genesis - Flame V</option>
+                    <option>Genesis - Flame IV</option>
+                    <option>Genesis - Flame III</option>
+                    <option>Genesis - Flame II</option>
+                    <option>Genesis - Flame</option>
+                    <option>Genesis - Ginger II</option>
+                    <option>Genesis - Ginger</option>
+                    <option>Genesis - Mocha II</option>
+                    <option>Genesis - Mocha</option>
+                    <option>Genesis - Patch II</option>
+                    <option>Genesis - Patch</option>
+                    <option>Genesis - Pearl II</option>
+                    <option>Genesis - Pearl</option>
+                    <option>Genesis - Smokey V</option>
+                    <option>Genesis - Smokey IV</option>
+                    <option>Genesis - Smokey III</option>
+                    <option>Genesis - Smokey II</option>
+                    <option>Genesis - Smokey</option>
+                    <option>Maine Coon - Plush Calico</option>
+                    <option>Maine Coon - Plush Calico Washed</option>
+                    <option>Maine Coon - Silver Tortoiseshell</option>
+                    <option>Ocicat - Black</option>
+                    <option>Ocicat - Blue</option>
+                    <option>Ocicat - Chocolate</option>
+                    <option>Ocicat - Cinnamon Silver</option>
+                    <option>Ocicat - Ebony Silver</option>
+                    <option>Ocicat - Lavender</option>
+                    <option>Ocicat - Platinum</option>
+                    <option>Ocicat - Tawny</option>
+                    <option>Pandie - Brown & White</option>
+                    <option>Pandie - Ebony & Ivory</option>
+                    <option>Pandie - Fawn</option>
+                    <option>Pandie - Flame</option>
+                    <option>Pandie - Platinum</option>
+                    <option>Russian - Black</option>
+                    <option>Russian - Blue</option>
+                    <option>Russian - White</option>
+                    <option>Scottish Shorthair - Blue & White</option>
+                    <option>Scottish Shorthair - Brown & White</option>
+                    <option>Siamese - Blue</option>
+                    <option>Siamese - Blue Tortie</option>
+                    <option>Siamese - Chocolate</option>
+                    <option>Siamese - Chocolate Tortie</option>
+                    <option>Siamese - Flame</option>
+                    <option>Siamese - Lilac</option>
+                    <option>Siamese - Seal</option>
+                    <option>Snowshoe - Bluepoint</option>
+                    <option>Snowshoe - Chocolate</option>
+                    <option>Snowshoe - Cream</option>
+                    <option>Snowshoe - Lilac</option>
+                    <option>Snowshoe - Red</option>
+                    <option>Tiger! - BubbleGum</option>
+                    <option>Tiger! - Chartreuse</option>
+                    <option>Tiger! - Dusky Blue</option>
+                    <option>Tiger! - Dusky Green</option>
+                    <option>Tiger! - Dusky Plum</option>
+                    <option>Tiger! - Dusky Winkle</option>
+                    <option>Tiger! - Golden Ticket</option>
+                    <option>Tiger! - Huckleberry</option>
+                    <option>Tiger! - Lavender</option>
+                    <option>Tiger! - Pinkie Winkie</option>
+                    <option>Tiger! - Powder Blue</option>
+                    <option>Tiger! - Purple Kiwi</option>
+                    <option>Tiger! - Shadow</option>
+                    <option>Tiger! - Turquoise</option>
+                    <option>Tonkinese - Blue Mink</option>
+                    <option>Tonkinese - Blue Mink Tortie</option>
+                    <option>Tonkinese - Blue Point</option>
+                    <option>Tonkinese - Champagne</option>
+                    <option>Tonkinese - Lilac Tortie</option>
+                    <option>Tonkinese - Natural Mink</option>
+                    <option>Toyger - Blue</option>
+                    <option>Toyger - Caramel</option>
+                    <option>Toyger - Silver</option>
+                    <option>Toyger - Snow</option>
+                    <option>Toyger - Coal</option>
+                    <option>Toyger - Tan</option>
+                    <option>Toyger - Tawny</option>
+                </select>
+            </fieldset>
+            <fieldset id="eyes">
+                <legend>Eyes</legend>
+                <fieldset id="eyecolors">
+                    <legend>Color</legend>
+                    <select id="eyecolor" onchange="doChange()">
+                        <option>18-Carat Gold</option>
+                        <option>Apple</option>
+                        <option>Autumn Leaf</option>
+                        <option>Azure</option>
+                        <option>Beach Blue</option>
+                        <option>Blacklight</option>
+                        <option>Blinking Garden</option>
+                        <option>Blinking Octopus</option>
+                        <option>Blinking Violet</option>
+                        <option>Blue Ice</option>
+                        <option>BlueBerry</option>
+                        <option>Blush Quartz</option>
+                        <option>Bronze</option>
+                        <option>Canary</option>
+                        <option>Caramel</option>
+                        <option>Changing Leaf</option>
+                        <option>Cognac</option>
+                        <option>Cosmic Twinkle</option>
+                        <option>Crystal Berry</option>
+                        <option>Crystal Clear</option>
+                        <option>Crystal Crush</option>
+                        <option>Crystal Dream</option>
+                        <option>Crystal Sea</option>
+                        <option>Crystal Spring</option>
+                        <option>Crystal Sun</option>
+                        <option>Destiny Rivers</option>
+                        <option>Destiny Skyline</option>
+                        <option>Destiny Waters</option>
+                        <option>Divine</option>
+                        <option>Double Dip Flora</option>
+                        <option>Double Odyssey Love</option>
+                        <option>Double Odyssey Peace</option>
+                        <option>Dreamy Hideaway</option>
+                        <option>Dreamy Mirage</option>
+                        <option>Dreamy Oasis</option>
+                        <option>Dry Olive</option>
+                        <option>End o' The Rainbow</option>
+                        <option>Exotic Breeze</option>
+                        <option>Exotic Journey</option>
+                        <option>Exotic Seas</option>
+                        <option>Exotic Treasure</option>
+                        <option>Fancie Blue Diamond</option>
+                        <option>Fancie Cobalt Diamond</option>
+                        <option>Fancie Dusky Diamond</option>
+                        <option>Fancie Green Diamond</option>
+                        <option>Fancie Indigo Diamond</option>
+                        <option>Fancie Odyssey Circus</option>
+                        <option>Fancie Pink Diamond</option>
+                        <option>Fancie Purple Diamond</option>
+                        <option>Fancie Rose Diamond</option>
+                        <option>Fancie Sage Diamond</option>
+                        <option>Fancie Teal Diamond</option>
+                        <option>Fire</option>
+                        <option>FlowerChild Byrds</option>
+                        <option>FlowerChild Dylan</option>
+                        <option>FlowerChild GoodVibrations</option>
+                        <option>FlowerChild Groovy</option>
+                        <option>FlowerChild Lucy</option>
+                        <option>FlowerChild OrangeSkies</option>
+                        <option>FlowerChild Woodstock</option>
+                        <option>Forest</option>
+                        <option>Frost</option>
+                        <option>Full Moon</option>
+                        <option>Galaxy Burst</option>
+                        <option>Galaxy Comet</option>
+                        <option>Galaxy Gator</option>
+                        <option>Galaxy Lava</option>
+                        <option>Galaxy Moon</option>
+                        <option>Galaxy Nebula</option>
+                        <option>Galaxy Orbit</option>
+                        <option>Galaxy Star</option>
+                        <option>Galaxy Sun</option>
+                        <option>Galaxy Trip</option>
+                        <option selected="selected">Genesis Aqua</option>
+                        <option>Genesis Bronze</option>
+                        <option>Genesis Earth</option>
+                        <option>Genesis Evergreen</option>
+                        <option>Genesis Meadow</option>
+                        <option>Genesis Odessey</option>
+                        <option>Genesis Odyssey 2</option>
+                        <option>Genesis Sunflower</option>
+                        <option>Genesis Sunshine</option>
+                        <option>Genesis Water</option>
+                        <option>Gerbera Blue</option>
+                        <option>Gerbera Orange</option>
+                        <option>Gerbera Pink</option>
+                        <option>Gerbera Purple</option>
+                        <option>Grape Ice</option>
+                        <option>Grass</option>
+                        <option>Grey Matter</option>
+                        <option>Grotto</option>
+                        <option>Huckleberry</option>
+                        <option>Ice Crystal</option>
+                        <option>Jade</option>
+                        <option>Key Lime</option>
+                        <option>Lemon</option>
+                        <option>Light Wash</option>
+                        <option>Lucky Irish Clover</option>
+                        <option>Magic Forest</option>
+                        <option>Magic Glass</option>
+                        <option>Magic Kiss</option>
+                        <option>Magic Memory</option>
+                        <option>Magic Reef</option>
+                        <option>Malachite</option>
+                        <option>Marble Magic</option>
+                        <option>Meditation Bliss</option>
+                        <option>Meditation Clarity</option>
+                        <option>Mercury</option>
+                        <option>Midnight Sky</option>
+                        <option>Mint Julep</option>
+                        <option>Mocha</option>
+                        <option>Morning Dew</option>
+                        <option>Morning Glory</option>
+                        <option>Mountain Mist</option>
+                        <option>Moss</option>
+                        <option>Ocean Mist</option>
+                        <option>Oceania</option>
+                        <option>Odyssey Adore</option>
+                        <option>Odyssey Bellini</option>
+                        <option>Odyssey Burst</option>
+                        <option>Odyssey Carnival</option>
+                        <option>Odyssey Cognac Moon</option>
+                        <option>Odyssey Cognac Wine</option>
+                        <option>Odyssey Collision</option>
+                        <option>Odyssey Crush</option>
+                        <option>Odyssey Crystal Rose</option>
+                        <option>Odyssey Dream</option>
+                        <option>Odyssey Fire & Rain</option>
+                        <option>Odyssey Flutterby</option>
+                        <option>Odyssey Galactic</option>
+                        <option>Odyssey Kaleidoscope</option>
+                        <option>Odyssey Magic</option>
+                        <option>Odyssey Rainbow</option>
+                        <option>Odyssey Skyline</option>
+                        <option>Odyssey Slush</option>
+                        <option>Odyssey Sorbet</option>
+                        <option>Odyssey Splash</option>
+                        <option>Odyssey Sublime</option>
+                        <option>Odyssey Terra</option>
+                        <option>Odyssey Wonder</option>
+                        <option>Onyx</option>
+                        <option>Opaline</option>
+                        <option>Passion</option>
+                        <option>Peach Bellini</option>
+                        <option>Pewter</option>
+                        <option>Pink Ice</option>
+                        <option>Platinum</option>
+                        <option>Plum</option>
+                        <option>Pomegranate</option>
+                        <option>Prismatic</option>
+                        <option>Pumpkin</option>
+                        <option>Purple Rain</option>
+                        <option>Rainbow Prism</option>
+                        <option>Rock My World</option>
+                        <option>RockAmethyst</option>
+                        <option>RockTurquoise</option>
+                        <option>Royal Sapphire</option>
+                        <option>Serendipity Glow</option>
+                        <option>Serendipity Stare</option>
+                        <option>Serendipity Streams</option>
+                        <option>Serenity</option>
+                        <option>Shamrock</option>
+                        <option>Slate Black</option>
+                        <option>Soul Sparkle</option>
+                        <option>Soul Whisper</option>
+                        <option>Sparkle Dream</option>
+                        <option>Starry Baby Blues</option>
+                        <option>Starry Ocean Blues</option>
+                        <option>Strawberry Bellini</option>
+                        <option>Sunset</option>
+                        <option>Surprise Sparkle</option>
+                        <option>Tapestry Allure</option>
+                        <option>Tapestry Harvest</option>
+                        <option>Tapestry Organica</option>
+                        <option>Tapestry Reef</option>
+                        <option>Tapestry Royale</option>
+                        <option>Tranquility</option>
+                        <option>Twilight</option>
+                        <option>Twinkle Bouquet</option>
+                        <option>Twinkle Seas</option>
+                        <option>Uber Odyssey</option>
+                        <option>Unity Song</option>
+                        <option>Verdant</option>
+                        <option>Violet</option>
+                        <option>Wild Cherry</option>
+                        <option>Wild Odyssey</option>
+                    </select>
+                </fieldset>
+                <fieldset id="eyeshapes">
+                    <legend>Shape</legend>
+                    <select id="eyeshape" onchange="doChange()">
+                        <option selected="selected">Curious</option>
+                        <option>Mysterious</option>
+                    </select>
+                </fieldset>
+                <fieldset id="pupils">
+                    <legend>Pupil</legend>
+                    <select id="pupil" onchange="doChange()">
+                        <option selected="selected">Big</option>
+                        <option>Small</option>
+                    </select>
+                </fieldset>
+            </fieldset>
+            <fieldset id="ears">
+                <legend>Ears</legend>
+                <select id="ear" onchange="doChange()">
+                    <option>Big Boo Boo</option>
+                    <option>Boo Boo</option>
+                    <option>Curious</option>
+                    <option>Dreamy Fold</option>
+                    <option>Equine</option>
+                    <option>Foxie</option>
+                    <option selected="selected">Genesis</option>
+                    <option>Mysterious Odyssey Fold</option>
+                    <option>Mysterious</option>
+                    <option>Odyssey Boo Boo</option>
+                    <option>Odyssey Equine</option>
+                    <option>Odyssey No. 1</option>
+                    <option>Odyssey No. 2</option>
+                    <option>Odyssey Rounded Fold</option>
+                    <option>Odyssey Rounded Boo Boo</option>
+                    <option>Odyssey Tiger Fold</option>
+                    <option>Pixie Point</option>
+                    <option>Pixie Rounded</option>
+                    <option>Pixie Tufted</option>
+                    <option>Pixie Wild Tiger</option>
+                    <option>Pointed Soft Fold</option>
+                    <option>Rounded</option>
+                    <option>Rounded Boo Boo</option>
+                    <option>Rounded Fold</option>
+                    <option>Scotty Fold</option>
+                    <option>Soft Curl</option>
+                    <option>Soft Fold</option>
+                    <option>Soft Fold Boo Boo</option>
+                    <option>Tiger Fold</option>
+                    <option>Tufted</option>
+                    <option>Vampire</option>
+                    <option>Wild Tiger</option>
+                </select>
+            </fieldset>
+            <fieldset id="whiskers">
+                <legend>Whiskers</legend>
+                <fieldset id="whiskercolors">
+                    <legend>Color</legend>
+                    <select id="whiskercolor" onchange="doChange()">
+                        <option>2 Tone Black & White</option>
+                        <option>Black</option>
+                        <option>Blonde Streaked</option>
+                        <option>Blue Tipped White</option>
+                        <option>Blush Tipped White</option>
+                        <option>Butterscotch</option>
+                        <option>Butterscotch Tipped Black</option>
+                        <option>Chocolate</option>
+                        <option>Chocolate Tipped</option>
+                        <option>Chocolate Tipped Flame</option>
+                        <option>Cream</option>
+                        <option>Dark Chocolate</option>
+                        <option>Dusky</option>
+                        <option>Flame</option>
+                        <option>Grey Tipped Black</option>
+                        <option>Grey Tipped White</option>
+                        <option>Latte</option>
+                        <option>Monochrome</option>
+                        <option>Plum Tipped Black</option>
+                        <option>Sage Tipped Black</option>
+                        <option selected="selected">Silver</option>
+                        <option>Smoke</option>
+                        <option>Turquoise Tipped Black</option>
+                        <option>White</option>
+                        <option>White Tipped Grey</option>
+                    </select>
+                </fieldset>
+                <fieldset id="whiskershapes">
+                    <legend>Shape</legend>
+                    <select id="whiskershape" onchange="doChange()">
+                        <option>Boo Boo</option>
+                        <option>Curious</option>
+                        <option>Double Dreamy</option>
+                        <option>Double Plush</option>
+                        <option>Double Snappy</option>
+                        <option>Double Stubby</option>
+                        <option>Dreamy</option>
+                        <option>Frazzled</option>
+                        <option>Fussy</option>
+                        <option selected="selected">Guitar</option>
+                        <option>Light Wave</option>
+                        <option>Lite Dream</option>
+                        <option>Lush</option>
+                        <option>Mysterious</option>
+                        <option>Odyssey FrazzyWave</option>
+                        <option>Plush</option>
+                        <option>Sassy</option>
+                        <option>Snappy</option>
+                        <option>Snappy Lite</option>
+                        <option>Stubby</option>
+                        <option>Swanky</option>
+                        <option>Swanky Lite</option>
+                        <option>Wavy</option>
+                    </select>
+                </fieldset>
+            </fieldset>
+        </form>
+    </body>
+</html>
