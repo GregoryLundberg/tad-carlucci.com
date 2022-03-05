@@ -3,6 +3,15 @@
     <head>
         <title>Build-a-Cat</title>
         <meta charset="UTF-8">
+        <meta http-equiv="Content-Security-Policy" content="
+            default-src 'none';
+            script-src  'sha256-QpZatWEvl/iYFrTjPsSRJkrnMoEj4G1feyOo6gWhbko='
+                        'unsafe-inline';
+            img-src     https://kittycats.ws
+                        https://www.paypalobjects.com
+                        'self';
+            style-src   'sha256-yTkyAcomipbD2dIkaQRT1jz0eXnG9uCILFW9p/o/wyU='
+        ">
         <meta name="description" content="A 'What-if' tool for KittyCatS collectors and breeders.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="favicon.ico">
