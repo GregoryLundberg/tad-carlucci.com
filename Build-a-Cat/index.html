@@ -84,6 +84,19 @@
                 else
                     document.getElementById('confetti').className = '';
             }
+
+            document.addEventListener('readystatechange', () => {
+                if (document.readyState === 'complete') {
+                    document.getElementById('head').addEventListener('change', doChange)
+                    document.getElementById('fur').addEventListener('change', doChange)
+                    document.getElementById('eyecolor').addEventListener('change', doChange)
+                    document.getElementById('eyeshape').addEventListener('change', doChange)
+                    document.getElementById('pupil').addEventListener('change', doChange)
+                    document.getElementById('ear').addEventListener('change', doChange)
+                    document.getElementById('whiskercolor').addEventListener('change', doChange)
+                    document.getElementById('whiskershape').addEventListener('change', doChange)
+                }
+            })
         </script>
     </head>
     <body>
@@ -106,14 +119,14 @@
         <form id="traits" name="traits">
             <fieldset id="heads">
                 <legend>Head</legend>
-                <select id="head" onchange="doChange()">
+                <select id="head">
                     <option selected="selected">Rollie Pollie</option>
                     <option>Floofy</option>
                 </select>
             </fieldset>
             <fieldset id="furs">
                 <legend>Fur</legend>
-                <select id="fur" onchange="doChange()">
+                <select id="fur">
                     <option>Abyssinian - Black Silver</option>
                     <option>Abyssinian - Blue</option>
                     <option>Abyssinian - Cinnamon</option>
@@ -325,7 +338,7 @@
                 <legend>Eyes</legend>
                 <fieldset id="eyecolors">
                     <legend>Color</legend>
-                    <select id="eyecolor" onchange="doChange()">
+                    <select id="eyecolor">
                         <option>18-Carat Gold</option>
                         <option>Apple</option>
                         <option>Autumn Leaf</option>
@@ -520,14 +533,14 @@
                 </fieldset>
                 <fieldset id="eyeshapes">
                     <legend>Shape</legend>
-                    <select id="eyeshape" onchange="doChange()">
+                    <select id="eyeshape">
                         <option selected="selected">Curious</option>
                         <option>Mysterious</option>
                     </select>
                 </fieldset>
                 <fieldset id="pupils">
                     <legend>Pupil</legend>
-                    <select id="pupil" onchange="doChange()">
+                    <select id="pupil">
                         <option selected="selected">Big</option>
                         <option>Small</option>
                     </select>
@@ -535,7 +548,7 @@
             </fieldset>
             <fieldset id="ears">
                 <legend>Ears</legend>
-                <select id="ear" onchange="doChange()">
+                <select id="ear">
                     <option>Big Boo Boo</option>
                     <option>Boo Boo</option>
                     <option>Curious</option>
@@ -575,7 +588,7 @@
                 <legend>Whiskers</legend>
                 <fieldset id="whiskercolors">
                     <legend>Color</legend>
-                    <select id="whiskercolor" onchange="doChange()">
+                    <select id="whiskercolor">
                         <option>2 Tone Black &amp; White</option>
                         <option>Black</option>
                         <option>Blonde Streaked</option>
@@ -605,7 +618,7 @@
                 </fieldset>
                 <fieldset id="whiskershapes">
                     <legend>Shape</legend>
-                    <select id="whiskershape" onchange="doChange()">
+                    <select id="whiskershape">
                         <option>Boo Boo</option>
                         <option>Curious</option>
                         <option>Double Dreamy</option>
