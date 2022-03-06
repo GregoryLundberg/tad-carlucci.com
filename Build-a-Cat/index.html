@@ -4,16 +4,20 @@
         <title>Build-a-Cat</title>
         <meta charset="UTF-8">
         <meta http-equiv="Content-Security-Policy" content="
-            default-src 'none';
-            script-src  'sha256-Wb7N0AcNs0ViEl/8aKPuKD3XZiXyS7nlKwTgDDiA9j0='
-                        'unsafe-inline';
-            img-src     https://kittycats.ws
-                        https://www.paypalobjects.com
-                        'self';
-            style-src   'sha256-yTkyAcomipbD2dIkaQRT1jz0eXnG9uCILFW9p/o/wyU='
+            default-src     'none';
+            img-src         https://kittycats.ws
+                            https://www.paypalobjects.com
+                            'self';
+            manifest-src    'self';
+            script-src      'sha256-oLm5LHxH25trjy5A1pVq4Eo9HjTse0U4Z3je5zXBKR0=';
+            style-src       'sha256-yTkyAcomipbD2dIkaQRT1jz0eXnG9uCILFW9p/o/wyU=';
+            worker-src      'self';
         ">
         <meta name="description" content="A 'What-if' tool for KittyCatS collectors and breeders.">
+        <meta name="theme-color" content="#0078D7">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" href="icon.png">
+        <link rel="manifest" href="manifest.webmanifest">
         <link rel="shortcut icon" href="favicon.ico">
         <style>
             img {
@@ -106,6 +110,12 @@
                     document.getElementById('whiskershape').addEventListener('change', doChange)
                 }
             })
+
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('serviceworker.js')
+                })
+            }
         </script>
     </head>
     <body>
