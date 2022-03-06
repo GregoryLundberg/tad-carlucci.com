@@ -32,3 +32,11 @@ document.addEventListener('readystatechange', () => {
         document.getElementById('whiskershape').addEventListener('change', doChange)
     }
 })
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service_worker.js', {
+        scope: ''
+    }).catch(function(error) {
+        console.log('Registration failed with ' + error);
+    });
+}
