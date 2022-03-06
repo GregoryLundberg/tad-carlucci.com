@@ -1,0 +1,21 @@
+{
+    "name": "Build-a-Cat",
+    "description": "A 'What-if' tool for KittyCatS collectors and breeders.",
+    "start_url": "/Build-a-Cat/index.html",
+    "display": "minimal-ui",
+    "background_color": "white",
+    "theme_color": "#0078D7",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "splash.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+} 

@@ -7,7 +7,10 @@ this.addEventListener('install', function(event) {
                 'index.html',
                 'index.js',
                 'index.css',
-                'favicon.ico'
+                'favicon.ico',
+                'manifest.webmanifest',
+                'icon.png',
+                'splash.png'
             ]);
         })
     );

@@ -35,7 +35,7 @@ document.addEventListener('readystatechange', () => {
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service_worker.js', {
-        scope: ''
+        scope: '/Build-a-Cat/'
     }).catch(function(error) {
         console.log('Registration failed with ' + error);
     });
