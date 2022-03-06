@@ -1,0 +1,54 @@
+img {
+    bottom: 0;
+    height : 540px;
+    position : absolute;
+    right: 0;
+    width : 400px;
+}
+
+#images {
+    bottom : 0px;
+    height : 540px;
+    position : absolute;
+    right : 0px;
+    width : 400px;
+    z-index: -1;
+}
+
+#traits {
+    max-width : 250px;
+    width : 50%;
+}
+
+#donate {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+#confetti {
+    position: absolute;
+    left: 50%;
+    margin: 10px;
+    color: red;
+    visibility: hidden;
+}
+
+#confetti.show {
+    visibility: visible;
+}
+
+select {
+    width : 100%
+}
+
+@media (max-width: 600px), (max-height: 600px) {
+    body {
+        font-size: 67%;
+    }
+
+    img {
+        height: 270px;
+        width: 200px;
+    }
+}
