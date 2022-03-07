@@ -11,12 +11,12 @@
 
         var head = (selected_head === 'Floofy') ? 'Floofy_head/' : ''
 
-        document.getElementById('shadowlayer'  ).src = 'https://kittycats.ws/online/images/ears/' + head + ear + '_SHADOW.png';
-        document.getElementById('furlayer'     ).src = 'https://kittycats.ws/online/images/ears/' + head + ear + '/' + fur + '.png';
-        document.getElementById('eyeslayer'    ).src = 'https://kittycats.ws/online/images/eyes/' + eyeshape + '_' + pupil + '/' + eyecolor.toLowerCase() + '.png';
-        document.getElementById('whiskerslayer').src = 'https://kittycats.ws/online/images/whiskers/' + whiskershape + '/' + whiskercolor + '.png';
+        document.getElementById('shadowlayer'  ).src = 'https://kittycats.ws/online/images/ears/' + head + ear + '_SHADOW.png'
+        document.getElementById('furlayer'     ).src = 'https://kittycats.ws/online/images/ears/' + head + ear + '/' + fur + '.png'
+        document.getElementById('eyeslayer'    ).src = 'https://kittycats.ws/online/images/eyes/' + eyeshape + '_' + pupil + '/' + eyecolor.toLowerCase() + '.png'
+        document.getElementById('whiskerslayer').src = 'https://kittycats.ws/online/images/whiskers/' + whiskershape + '/' + whiskercolor + '.png'
 
-        document.getElementById('confetti').className = (fur.substring(0,11) === 'Confetti - ') ? 'show' : '';
+        document.getElementById('confetti').className = (fur.substring(0,11) === 'Confetti - ') ? 'show' : ''
     }
 
     document.addEventListener('readystatechange', () => {
@@ -37,6 +37,6 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service_worker.js', {
         scope: '/Build-a-Cat/'
     }).catch(function(error) {
-        console.log('Service worker registration failed with ' + error);
-    });
+        console.log('Service worker registration failed with ' + error)
+    })
 }
