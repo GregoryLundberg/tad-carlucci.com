@@ -9,6 +9,10 @@
         var whiskercolor  = document.getElementById('whiskercolor').options[document.getElementById('whiskercolor').selectedIndex].text
         var whiskershape  = document.getElementById('whiskershape').options[document.getElementById('whiskershape').selectedIndex].text
 
+        var noBox   = document.getElementById('noBox'  ).checked
+        var girlBox = document.getElementById('girlBox').checked
+        var boyBox  = document.getElementById('boyBox' ).checked
+        
         var head = (selected_head === 'Floofy') ? 'Floofy_head/' : ''
 
         document.getElementById('shadowlayer'  ).src = 'https://kittycats.ws/online/images/ears/' + head + ear + '_SHADOW.png'
@@ -17,6 +21,13 @@
         document.getElementById('whiskerslayer').src = 'https://kittycats.ws/online/images/whiskers/' + whiskershape + '/' + whiskercolor + '.png'
 
         document.getElementById('confetti').className = (fur.substring(0,11) === 'Confetti - ') ? 'show' : ''
+
+        if (noBox)
+            document.getElementById('boxlayer').style.visibility = "hidden"
+        else {
+            document.getElementById('boxlayer').src = "https://kittycats.ws/online/HUD_BOX_" + ((girlBox) ? "GIRL" : "BOY") + ".png"
+            document.getElementById('boxlayer').style.visibility = "visible"
+        }
     }
 
     document.addEventListener('readystatechange', () => {
@@ -29,6 +40,9 @@
             document.getElementById('ear'         ).addEventListener('change', doChange)
             document.getElementById('whiskercolor').addEventListener('change', doChange)
             document.getElementById('whiskershape').addEventListener('change', doChange)
+            document.getElementById('noBox'       ).addEventListener('change', doChange)
+            document.getElementById('girlBox'     ).addEventListener('change', doChange)
+            document.getElementById('boyBox'      ).addEventListener('change', doChange)
         }
     })
 }())

@@ -15,6 +15,10 @@ img {
     z-index: -1;
 }
 
+#boxlayer {
+    visibility: hidden;
+}
+
 #traits {
     max-width : 250px;
     width : 50%;
