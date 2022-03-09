@@ -56,3 +56,9 @@ select {
         width: 200px;
     }
 }
+
+@media(pointer:coarse) {
+    input[type="radio"] {
+        margin: .4em;
+    }
+}
