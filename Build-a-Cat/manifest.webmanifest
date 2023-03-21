@@ -1,6 +1,7 @@
 {
     "name": "Build-a-Cat",
     "description": "A 'What-if' tool for KittyCatS collectors and breeders.",
+    "id": "/Build-a-Cat/index.html",
     "start_url": "/Build-a-Cat/index.html",
     "display": "minimal-ui",
     "background_color": "white",
