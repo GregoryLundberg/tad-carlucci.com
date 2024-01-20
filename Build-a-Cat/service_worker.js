@@ -1,4 +1,4 @@
-const cacheName = 'build-a-cat-v11'
+const cacheName = 'build-a-cat-v12'
 
 this.addEventListener('install', function(event) {
     event.waitUntil(
