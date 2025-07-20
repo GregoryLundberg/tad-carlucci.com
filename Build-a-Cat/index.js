@@ -5,7 +5,7 @@ var earSel
 var wColorSel, wShapeSel
 var noBoxRad, girlBoxRad, boyBoxRad
 
-var canonical = window.location.href.split('#')[0]
+var canonical
 
 (function(){
     
@@ -51,6 +51,7 @@ var canonical = window.location.href.split('#')[0]
                                      wShapeSel.options[ wShapeSel.selectedIndex ].getAttribute('data-tag') + '.' +
                                      box
         document.getElementById('catlink').href = link
+        history.pushState({}, "", link)
                                      
     }
     
@@ -93,6 +94,7 @@ var canonical = window.location.href.split('#')[0]
 
     document.addEventListener('readystatechange', () => {
         if (document.readyState === 'complete') {
+            canonical = window.location.href.split('#')[0]
             headSel     = document.getElementById('head'        )
             furSel      = document.getElementById('fur'         )
             eColorSel   = document.getElementById('eyecolor'    )
