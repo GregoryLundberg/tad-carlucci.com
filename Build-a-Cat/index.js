@@ -13,7 +13,7 @@
         var girlBox = document.getElementById('girlBox').checked
         var boyBox  = document.getElementById('boyBox' ).checked
         
-        var head = (selected_head === 'Floofy') ? 'Floofy_head/' : ''
+        var head = (selected_head !== 'Rollie Pollie') ? selected_head + '_head/' : ''
 
         document.getElementById('shadowlayer'  ).src = 'https://kittycats.ws/online/images/ears/' + head + ear + '_SHADOW.png'
         document.getElementById('furlayer'     ).src = 'https://kittycats.ws/online/images/ears/' + head + ear + '/' + fur + '.png'
