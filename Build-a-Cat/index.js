@@ -9,6 +9,8 @@ var headOpts = ["RolliePollie", "Floofy", "Lemon", "Dreamy", "Chubby"]
 var eyeShapeOpts = ["Curious", "Mysterious"]
 var eyePupilOpts = ["Big", "Small"]
 
+var pt1 = null
+var pt2 = null
 var canonical
 
 (function(){
@@ -91,7 +93,8 @@ var canonical
     function clickCopy(event) {
         const offsetX = (document.documentElement.clientWidth - event.clientX - 10) + "px"
         const offsetY = (event.clientY - 10) + "px"
-        
+        if (pt1 !== null) window.clearTimeout(pt1)
+        if (pt2 !== null) window.clearTimeout(pt2)
         copyTextToClipboard(window.location.href, offsetX, offsetY)
     }
 
@@ -112,10 +115,12 @@ var canonical
         notice.style.display         = 'block'
         notice.style.backgroundColor = color
         notice.style.opacity         = 1
-        window.setTimeout(function() {
+        pt1 = window.setTimeout(function() {
             notice.style.opacity = 0
-            window.setTimeout(function() {
+            pt1 = null
+            pt2 = window.setTimeout(function() {
                 notice.style.display = 'none'
+                pt2 = null
             }, 550)
         }, 1000)
     }
