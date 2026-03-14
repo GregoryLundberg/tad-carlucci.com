@@ -91,34 +91,34 @@ var canonical
     function clickCopy(event) {
         const offsetX = (document.documentElement.clientWidth - event.clientX - 10) + "px"
         const offsetY = (event.clientY - 10) + "px"
-		
-		copyTextToClipboard(window.location.href, offsetX, offsetY)
+        
+        copyTextToClipboard(window.location.href, offsetX, offsetY)
     }
 
     async function copyTextToClipboard(text, msgX, msgY) {
-		var message, color
+        var message, color
         try {
             await navigator.clipboard.writeText(text);
-			message = 'Cat permalink copied!'
-			color   = '#cef'
+            message = 'Cat permalink copied!'
+            color   = '#cef'
         } catch (err) {
             console.error('Failed to copy permalink: ', err);
-			message = 'Failed to copy permalink!'
-			color   = '#fcc'
+            message = 'Failed to copy permalink!'
+            color   = '#fcc'
         }
-		const notice = document.getElementById('copyNotice')
-		notice.style.top             = msgY
-		notice.style.right           = msgX
-		notice.style.display         = 'block'
-		notice.style.backgroundColor = color
-		notice.style.opacity         = 1
-		window.setTimeout(function() {
-			notice.style.opacity = 0
-			window.setTimeout(function() {
-				notice.style.display = 'none'
-			}, 550)
-		}, 1000)
-	}
+        const notice = document.getElementById('copyNotice')
+        notice.style.top             = msgY
+        notice.style.right           = msgX
+        notice.style.display         = 'block'
+        notice.style.backgroundColor = color
+        notice.style.opacity         = 1
+        window.setTimeout(function() {
+            notice.style.opacity = 0
+            window.setTimeout(function() {
+                notice.style.display = 'none'
+            }, 550)
+        }, 1000)
+    }
   
     document.addEventListener('readystatechange', () => {
         canonical = window.location.href.split('#')[0]
@@ -153,7 +153,7 @@ var canonical
             document.getElementById('noBox'       ).addEventListener('change', doChange)
             document.getElementById('girlBox'     ).addEventListener('change', doChange)
             document.getElementById('boyBox'      ).addEventListener('change', doChange)
-			document.getElementById('copyButton'  ).addEventListener('click', clickCopy)
+            document.getElementById('copyButton'  ).addEventListener('click', clickCopy)
             var hash = window.location.hash
             if (hash.length > 1) {
                 var values = hash.substring(1).split('~')
