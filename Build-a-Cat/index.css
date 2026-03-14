@@ -68,6 +68,7 @@ div#copyNotice {
     right: 100px;
     opacity: 1;
     transition: opacity 0.33s;
+	pointer-events: none;
 }
 
 @media (max-width: 600px), (max-height: 600px) {
