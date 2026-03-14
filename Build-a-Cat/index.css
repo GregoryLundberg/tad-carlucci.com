@@ -46,6 +46,30 @@ select {
     width : 100%
 }
 
+button#copyButton {
+	z-index: 10;
+	position: absolute;
+	top: 30px;
+	right: 20px;
+	font-size: 1.1em;
+	padding: 7px;
+}
+
+div#copyNotice {
+	display: none;
+	z-index: 20;
+	background-color: #ccc;
+	font-weight: bold;
+	font-size: 1.1em;
+	padding: 10px 15px;
+	border-radius: 20px;
+	position: absolute;
+	top: 30px;
+	right: 100px;
+	opacity: 1;
+	transition: opacity 0.33s;
+}
+
 @media (max-width: 600px), (max-height: 600px) {
     body {
         font-size: 67%;
@@ -55,10 +79,43 @@ select {
         height: 270px;
         width: 200px;
     }
+	
+	button#copyButton {
+		top: 15px;
+		right: 10px;
+	}
 }
 
 @media(pointer:coarse) {
     input[type="radio"] {
         margin: .4em;
     }
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		background-color: #222;
+		color: #ccc;
+	}
+	a:link {
+		color: #88f;
+	}
+	a:visited {
+		color: #c8f;
+	}
+	fieldset {
+		border-color: #888;
+	}
+	select, button {
+		background-color: #333;
+		color: #ddd;
+	}
+	button {
+		border: 1px solid #888;
+		border-bottom: 1px solid #000;
+		border-right: 1px solid #000;
+	}
+	div#copyNotice {
+		color: #000;
+	}
 }
